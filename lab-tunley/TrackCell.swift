@@ -14,6 +14,14 @@ class TrackCell: UITableViewCell {
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var artistNameLabel: UILabel!
     
+    /// Configures the cell's UI for the given track.
+    func configure(with track: Track) {
+        trackNameLabel.text = track.trackName
+        artistNameLabel.text = track.artistName
+
+        // Load image async via Nuke library image loading helper method
+        Nuke.loadImage(with: track.artworkURL100, into: trackImageView)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,14 +33,5 @@ class TrackCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    /// Configures the cell's UI for the given track.
-    func configure(with track: Track) {
-        trackNameLabel.text = track.trackName
-        artistNameLabel.text = track.artistName
-
-        // Load image async via Nuke library image loading helper method
-        Nuke.loadImage(with: track.artworkUrl100, into: trackImageView)
-    }
 
 }
-//
